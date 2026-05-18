@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\LegalController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProgramAdminController;
@@ -22,6 +23,10 @@ Route::get('/programas/{program:slug}', [ProgramController::class, 'show'])->nam
 
 Route::get('/contacto',   [ContactController::class, 'show'])->name('contact');
 Route::post('/contacto',  [ContactController::class, 'store'])->name('contact.store');
+
+// Páginas legales (LFPDPPP)
+Route::get('/cookies',             [LegalController::class, 'cookies'])->name('legal.cookies');
+Route::get('/aviso-de-privacidad', [LegalController::class, 'privacy'])->name('legal.privacy');
 
 /*
 |--------------------------------------------------------------------------

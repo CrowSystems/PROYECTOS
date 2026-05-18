@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="hero">
+<section class="hero-simple">
     <div class="container">
         <h1>{{ $program->title }}</h1>
         <p class="lead">{{ $program->summary }}</p>

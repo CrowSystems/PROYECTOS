@@ -28,6 +28,7 @@
     <meta name="twitter:image" content="{{ $seo['og_image'] ?? asset('images/hero.jpg') }}">
 
     {{-- Datos estructurados (JSON-LD) --}}
+    @php $mainLoc = $locations[0] ?? null; @endphp
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -35,9 +36,11 @@
         "name": "{{ $institutional['name'] }}",
         "url": "{{ url('/') }}",
         "logo": "{{ asset('images/logo.png') }}",
-        "email": "{{ $institutional['email'] }}",
-        "telephone": "{{ $institutional['phone'] }}",
-        "address": "{{ $institutional['address'] }}",
+        "email": "{{ $institutional['email'] ?? '' }}",
+        @if($mainLoc)
+        "telephone": "{{ $mainLoc['phone'] ?? '' }}",
+        "address": "{{ $mainLoc['address'] ?? '' }}",
+        @endif
         "sameAs": [
             "{{ $social['facebook'] ?? '' }}",
             "{{ $social['instagram'] ?? '' }}",
@@ -62,6 +65,8 @@
     </main>
 
     @include('layouts.partials.footer')
+
+    @include('layouts.partials.cookies-banner')
 
     <script src="{{ asset('js/app.js') }}" defer></script>
 </body>

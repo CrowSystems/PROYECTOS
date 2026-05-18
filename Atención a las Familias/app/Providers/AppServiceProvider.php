@@ -14,11 +14,12 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // Compartir datos institucionales y redes sociales con TODAS las vistas
+        // Compartir datos institucionales, sedes y redes sociales con TODAS las vistas
         View::composer('*', function ($view) {
             $view->with([
                 'institutional' => config('app.institutional'),
-                'social' => config('app.social'),
+                'locations'     => config('app.locations', []),
+                'social'        => config('app.social'),
             ]);
         });
     }

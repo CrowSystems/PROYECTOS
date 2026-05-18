@@ -1,6 +1,10 @@
-# Asociación Valores en Familia A.C. — Sitio web Laravel 11
+# Centro de Atención a las Familias A.C. (CAF) — Sitio web Laravel 11
 
-Sitio web institucional para una asociación civil sin fines de lucro que promueve los valores y la familia.
+Sitio web institucional de **Centro de Atención a las Familias A.C.**, asociación civil sin fines de lucro cuyo lema es *Fortaleciendo Familias — Familias unidas, familias fuertes*.
+
+**Paleta institucional:** rosa magenta (#E91E63), turquesa (#2BB8C4) y púrpura (#5E3B9E).
+
+> Antes de levantar el servidor, guarda las imágenes que te compartió el equipo en `public/images/` siguiendo la guía en `public/images/README-IMAGENES.md`.
 
 ## Características incluidas
 
@@ -50,8 +54,8 @@ Visita: http://localhost:8000
 ## Acceso al panel administrativo
 
 - URL:      http://localhost:8000/admin/login
-- Email:    `admin@valoresfamilia.org`
-- Password: `AdminSegura2026!`
+- Email:    `admin@cafamilias.org`
+- Password: `AdminCAF2026!`
 
 > Cámbiala desde el panel o por base de datos antes de salir a producción.
 

@@ -14,39 +14,33 @@ class DatabaseSeeder extends Seeder
     {
         // Usuario administrador por defecto
         User::updateOrCreate(
-            ['email' => 'admin@valoresfamilia.org'],
+            ['email' => 'admin@cafamilias.org'],
             [
-                'name'     => 'Administrador',
-                'password' => Hash::make('AdminSegura2026!'),
+                'name'     => 'Administrador CAF',
+                'password' => Hash::make('AdminCAF2026!'),
                 'is_admin' => true,
             ]
         );
 
-        // Programas iniciales
+        // Servicios CAF
         $programs = [
             [
-                'title'   => 'Familias en Crecimiento',
-                'summary' => 'Talleres y acompañamiento para fortalecer la convivencia y la comunicación en el hogar.',
-                'description' => 'Acompañamos a familias en situación de vulnerabilidad a través de talleres mensuales, terapia familiar y orientación psicológica gratuita. Nuestro objetivo es restaurar los vínculos y promover los valores que sostienen el bienestar del hogar.',
+                'title'   => 'Asesoría Legal',
+                'summary' => 'Orientación y apoyo profesional para su familia.',
+                'description' => "Brindamos orientación jurídica gratuita y acompañamiento legal en temas familiares: divorcios, pensión alimenticia, custodia de menores, violencia familiar, regularización de documentos y trámites civiles. Nuestro equipo de abogados acompaña a cada familia con sensibilidad, confidencialidad y profesionalismo.",
                 'order' => 1, 'is_featured' => true,
             ],
             [
-                'title'   => 'Niñez con Valores',
-                'summary' => 'Actividades formativas para niñas y niños en contextos de riesgo social.',
-                'description' => 'A través de espacios lúdicos, deportivos y formativos, brindamos a la infancia un entorno seguro donde aprender el valor del respeto, la responsabilidad y la solidaridad. Trabajamos con escuelas y comunidades de zonas marginadas.',
+                'title'   => 'Apoyo Psicológico',
+                'summary' => 'Orientación y apoyo profesional para su familia.',
+                'description' => "Atención psicológica individual, de pareja y familiar a precios accesibles. Trabajamos terapia para niñas, niños, adolescentes y adultos en temas de duelo, ansiedad, depresión, manejo de emociones, comunicación familiar y violencia. Nuestro equipo de psicólogos cuenta con cédula profesional.",
                 'order' => 2, 'is_featured' => true,
             ],
             [
-                'title'   => 'Adulto Mayor con Dignidad',
-                'summary' => 'Atención, compañía y servicios médicos básicos para personas adultas mayores.',
-                'description' => 'Visitamos asilos y casas de adultos mayores en abandono, ofreciendo compañía, talleres ocupacionales, atención médica básica y apoyo nutricional. Cada persona mayor merece vivir con dignidad y rodeada de afecto.',
+                'title'   => 'Asistencia Social',
+                'summary' => 'Orientación y apoyo profesional para tu familia.',
+                'description' => "Acompañamiento en la gestión de apoyos sociales, canalización a instituciones públicas y privadas, talleres de desarrollo humano y orientación para familias en situación de vulnerabilidad. Te ayudamos a encontrar los recursos que necesitas para salir adelante.",
                 'order' => 3, 'is_featured' => true,
-            ],
-            [
-                'title'   => 'Mujer y Maternidad',
-                'summary' => 'Apoyo integral a madres en situación vulnerable, especialmente jóvenes y solas.',
-                'description' => 'Brindamos asesoría legal, psicológica y nutricional a madres jefas de familia, así como capacitación laboral para que puedan generar ingresos sin descuidar a sus hijos.',
-                'order' => 4, 'is_featured' => false,
             ],
         ];
 

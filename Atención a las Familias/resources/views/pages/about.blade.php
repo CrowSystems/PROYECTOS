@@ -2,20 +2,24 @@
 
 @section('content')
 
-<section class="hero">
+<section class="hero-simple">
     <div class="container">
         <h1>Quiénes somos</h1>
-        <p class="lead">Una asociación civil al servicio de las familias mexicanas.</p>
+        <p class="lead">{{ $institutional['name'] }} — {{ $institutional['tagline'] }}.</p>
     </div>
 </section>
 
 <section class="section">
     <div class="container">
-        <div class="grid cols-2" style="align-items:center;">
+        <div class="grid cols-2" style="align-items:center;gap:3rem;">
+            <div class="split-image">
+                <img src="{{ asset('images/familia-feliz.jpg') }}" alt="Familia feliz">
+            </div>
             <div>
-                <h2>Nuestra historia</h2>
+                <small style="color:var(--color-accent);font-weight:700;letter-spacing:1px;">NUESTRA HISTORIA</small>
+                <h2 style="margin-top:.5rem;">Más de una década fortaleciendo familias</h2>
                 <p>
-                    {{ $institutional['name'] }} nace del compromiso de un grupo de ciudadanos
+                    El Centro de Atención a las Familias A.C. (CAF) nace del compromiso de un grupo de ciudadanos
                     convencidos de que la familia es la base de toda sociedad sana. Desde nuestros
                     inicios, hemos trabajado de la mano con comunidades para responder a las
                     necesidades de quienes más lo requieren.
@@ -25,13 +29,6 @@
                     bienestar de niños, jóvenes, mujeres, adultos mayores y familias en situación
                     de vulnerabilidad.
                 </p>
-            </div>
-            <div class="card">
-                <div class="card-image"><span>&#127968;</span></div>
-                <div class="card-body">
-                    <h3>Más de 10 años</h3>
-                    <p>Sirviendo con valores a miles de familias en distintas comunidades.</p>
-                </div>
             </div>
         </div>
     </div>
@@ -58,6 +55,26 @@
                 <div class="icon">&#10024;</div>
                 <h4>Valores</h4>
                 <p>Honestidad, respeto, solidaridad, responsabilidad, transparencia, compromiso y amor a la familia.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Comunidades que atendemos</h2>
+            <p>Cada rostro, cada historia, cada familia importa.</p>
+        </div>
+        <div class="grid cols-3">
+            <div class="split-image" style="height:280px;">
+                <img src="{{ asset('images/comunidad-1.jpg') }}" alt="Atención comunitaria">
+            </div>
+            <div class="split-image" style="height:280px;">
+                <img src="{{ asset('images/familia-indigena.jpg') }}" alt="Comunidades indígenas">
+            </div>
+            <div class="split-image" style="height:280px;">
+                <img src="{{ asset('images/talleres-1.jpg') }}" alt="Talleres formativos">
             </div>
         </div>
     </div>
