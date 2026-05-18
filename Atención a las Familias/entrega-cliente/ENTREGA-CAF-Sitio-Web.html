@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Entrega — Sitio Web | Centro de Apoyo para la Familia A.C.</title>
+<style>
+:root {
+    --primary:    #5E3B9E;
+    --primary-d:  #3D2370;
+    --secondary:  #2BB8C4;
+    --accent:     #E91E63;
+    --accent-soft:#FFE1ED;
+    --text:       #2C2738;
+    --muted:      #6C757D;
+    --light:      #FAF7FD;
+    --gradient:   linear-gradient(135deg, #E91E63 0%, #5E3B9E 50%, #2BB8C4 100%);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+@page {
+    size: A4;
+    margin: 18mm 16mm;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    color: var(--text);
+    background: #fff;
+    line-height: 1.6;
+    font-size: 11pt;
+}
+
+.page {
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 28px 36px;
+    page-break-after: always;
+}
+.page:last-of-type { page-break-after: auto; }
+
+/* ============ PORTADA ============ */
+.cover {
+    background: var(--gradient);
+    color: #fff;
+    min-height: 270mm;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 50px 40px;
+    page-break-after: always;
+    position: relative; overflow: hidden;
+}
+.cover::after {
+    content: ""; position: absolute; right: -60px; bottom: -60px;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, #fff 0%, transparent 70%);
+    opacity: .12;
+}
+.cover-top { position: relative; z-index: 1; }
+.cover-logo {
+    width: 130px; height: 130px; border-radius: 50%;
+    background: #fff; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; color: var(--primary); font-size: 42px;
+    margin-bottom: 30px; box-shadow: 0 8px 24px rgba(0,0,0,.2);
+}
+.cover h1 {
+    font-size: 36pt; line-height: 1.15; margin-bottom: 18px;
+    text-shadow: 0 2px 12px rgba(0,0,0,.25);
+}
+.cover h2 {
+    font-size: 16pt; font-weight: 500; opacity: .95;
+    border-top: 3px solid rgba(255,255,255,.5); padding-top: 18px;
+    max-width: 80%;
+}
+.cover-tag {
+    display: inline-block; background: #fff; color: var(--accent);
+    padding: 6px 16px; border-radius: 999px; font-size: 9pt;
+    font-weight: 700; letter-spacing: 1px; margin-bottom: 24px;
+}
+.cover-bottom {
+    position: relative; z-index: 1;
+    border-top: 2px solid rgba(255,255,255,.3); padding-top: 18px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    font-size: 10pt;
+}
+.cover-bottom strong { font-size: 12pt; }
+
+/* ============ HEADER de páginas ============ */
+.page-header {
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 12px; margin-bottom: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.page-header .left strong { color: var(--primary); font-size: 13pt; }
+.page-header .left small { color: var(--muted); display: block; font-size: 8.5pt; }
+.page-header .right { color: var(--muted); font-size: 9pt; text-align: right; }
+
+/* ============ TIPOGRAFÍA ============ */
+h1.section { color: var(--primary); font-size: 22pt; margin-bottom: 6px; }
+h1.section small { display: block; font-size: 10pt; font-weight: 400; color: var(--muted); margin-top: 4px; }
+h2 { color: var(--primary); font-size: 14pt; margin: 22px 0 10px; padding-bottom: 4px; border-bottom: 2px solid var(--accent-soft); }
+h3 { color: var(--primary-d); font-size: 11.5pt; margin: 14px 0 6px; }
+p { margin-bottom: 8px; }
+.intro { font-size: 11pt; color: var(--muted); border-left: 4px solid var(--accent); padding: 10px 14px; background: var(--accent-soft); border-radius: 4px; margin-bottom: 22px; }
+
+ul, ol { margin: 6px 0 12px 22px; }
+ul li, ol li { margin-bottom: 4px; }
+
+table { width: 100%; border-collapse: collapse; margin: 10px 0 18px; font-size: 9.5pt; }
+table th, table td { border: 1px solid #ddd; padding: 7px 9px; text-align: left; vertical-align: top; }
+table th { background: var(--primary); color: #fff; font-weight: 600; font-size: 9pt; text-transform: uppercase; letter-spacing: .5px; }
+table tr:nth-child(even) td { background: #FBF7FD; }
+
+.box {
+    background: #FBF7FD; border-left: 4px solid var(--secondary);
+    padding: 12px 16px; border-radius: 4px; margin: 12px 0;
+}
+.box.accent { border-left-color: var(--accent); background: var(--accent-soft); }
+.box.ok { border-left-color: #28A745; background: #DAF2D7; }
+
+.cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 14px 0; }
+.card {
+    background: #fff; border: 1px solid #eee; border-top: 3px solid var(--accent);
+    padding: 14px; border-radius: 6px;
+}
+.card .icon { font-size: 22pt; margin-bottom: 6px; }
+.card strong { color: var(--primary); display: block; margin-bottom: 4px; font-size: 11pt; }
+.card p { font-size: 9.5pt; color: var(--text); margin: 0; }
+
+.palette { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0; }
+.swatch { padding: 14px; border-radius: 6px; color: #fff; font-weight: 600; font-size: 9.5pt; }
+.swatch small { display: block; font-weight: 400; opacity: .9; font-size: 8.5pt; margin-top: 3px; }
+
+.check { color: #28A745; font-weight: 700; }
+.code {
+    background: #2C2738; color: #DAF2D7;
+    padding: 10px 14px; border-radius: 4px; font-family: 'Courier New', monospace;
+    font-size: 9pt; white-space: pre-wrap; margin: 8px 0;
+}
+
+.sitemap {
+    background: #FBF7FD; padding: 20px; border-radius: 8px; margin: 14px 0;
+}
+.sitemap .root {
+    background: var(--primary); color: #fff; padding: 10px 16px;
+    border-radius: 6px; display: inline-block; font-weight: 700; margin-bottom: 14px;
+}
+.sitemap ul { list-style: none; margin-left: 16px; padding-left: 0; }
+.sitemap ul li {
+    padding: 6px 12px; background: #fff; border-left: 3px solid var(--accent);
+    margin-bottom: 6px; border-radius: 0 4px 4px 0;
+}
+.sitemap ul li strong { color: var(--primary); }
+.sitemap ul li small { display: block; color: var(--muted); font-size: 8.5pt; }
+
+.footer-note {
+    margin-top: 30px; padding-top: 14px; border-top: 1px solid #eee;
+    color: var(--muted); font-size: 8.5pt; text-align: center;
+}
+
+@media print {
+    body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .no-print { display: none; }
+}
+.no-print {
+    position: fixed; right: 12px; top: 12px;
+    background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 999px;
+    font-weight: 600; font-size: 10pt; box-shadow: 0 4px 14px rgba(0,0,0,.2); z-index: 999;
+}
+</style>
+</head>
+<body>
+
+<div class="no-print">💡 Presiona Ctrl + P → Guardar como PDF</div>
+
+<!-- ============================================================
+     PORTADA
+============================================================ -->
+<section class="cover">
+    <div class="cover-top">
+        <div class="cover-logo">CAF</div>
+        <span class="cover-tag">ENTREGA DE PROYECTO · {{YEAR}}</span>
+        <h1>Sitio Web Institucional</h1>
+        <h2>Centro de Apoyo para la Familia A.C.</h2>
+        <p style="margin-top:18px; opacity:.95; max-width:80%;">
+            Plataforma web profesional, responsive y conforme a la normativa
+            mexicana de protección de datos (LFPDPPP).
+        </p>
+    </div>
+
+    <div class="cover-bottom">
+        <div>
+            <strong>Cliente</strong><br>
+            Centro de Apoyo para la Familia A.C.
+        </div>
+        <div style="text-align:center;">
+            <strong>Entregable</strong><br>
+            Sitio web Laravel 11 + Panel admin
+        </div>
+        <div style="text-align:right;">
+            <strong>Fecha</strong><br>
+            {{DATE}}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     ÍNDICE
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">Documento de entrega<br>Página 2</div>
+    </div>
+
+    <h1 class="section">Índice<small>Contenido del documento de entrega</small></h1>
+
+    <table style="margin-top:20px;">
+        <tr><th style="width:50px;">No.</th><th>Sección</th><th style="width:80px;">Página</th></tr>
+        <tr><td>1</td><td>Resumen ejecutivo del proyecto</td><td>3</td></tr>
+        <tr><td>2</td><td>Cumplimiento de la propuesta original</td><td>4</td></tr>
+        <tr><td>3</td><td>Mapa del sitio</td><td>5</td></tr>
+        <tr><td>4</td><td>Detalle de páginas públicas</td><td>6</td></tr>
+        <tr><td>5</td><td>Servicios ofrecidos</td><td>8</td></tr>
+        <tr><td>6</td><td>Panel administrativo</td><td>9</td></tr>
+        <tr><td>7</td><td>Identidad visual y experiencia de usuario</td><td>10</td></tr>
+        <tr><td>8</td><td>Características técnicas</td><td>11</td></tr>
+        <tr><td>9</td><td>Cumplimiento normativo (LFPDPPP)</td><td>12</td></tr>
+        <tr><td>10</td><td>Instalación y despliegue</td><td>13</td></tr>
+        <tr><td>11</td><td>Credenciales y accesos</td><td>14</td></tr>
+        <tr><td>12</td><td>Soporte y próximos pasos</td><td>15</td></tr>
+    </table>
+
+    <div class="box accent" style="margin-top:30px;">
+        <strong style="color:var(--primary);">Este documento</strong>
+        <p style="margin-top:6px;">describe en detalle el sitio web entregado para el Centro de Apoyo para la Familia A.C. Incluye la estructura, las funcionalidades, el cumplimiento de la propuesta inicial y los pasos para mantener y administrar la plataforma.</p>
+    </div>
+</section>
+
+<!-- ============================================================
+     1. RESUMEN EJECUTIVO
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">1. Resumen ejecutivo<br>Página 3</div>
+    </div>
+
+    <h1 class="section">1. Resumen ejecutivo<small>Vista panorámica del proyecto entregado</small></h1>
+
+    <p class="intro">
+        El presente proyecto consiste en el desarrollo e implementación de un sitio web
+        institucional para el <strong>Centro de Apoyo para la Familia A.C. (CAF)</strong>,
+        organización civil sin fines de lucro dedicada a brindar atención integral y
+        profesional a las familias en sus retos jurídicos, emocionales y sociales.
+    </p>
+
+    <h2>Objetivos cumplidos</h2>
+    <ul>
+        <li>Posicionar institucionalmente al CAF mediante un sitio profesional y moderno.</li>
+        <li>Facilitar el contacto entre la comunidad y los servicios de la asociación.</li>
+        <li>Comunicar de forma clara los tres servicios ofrecidos: Asesoría Legal, Apoyo Psicológico y Asistencia Social.</li>
+        <li>Permitir la administración autónoma del contenido a través de un panel privado.</li>
+        <li>Cumplir con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP).</li>
+    </ul>
+
+    <h2>Alcance entregado</h2>
+    <div class="cards">
+        <div class="card">
+            <div class="icon">🏠</div>
+            <strong>4 páginas públicas</strong>
+            <p>Inicio, Nosotros, Servicios, Contacto</p>
+        </div>
+        <div class="card">
+            <div class="icon">🔐</div>
+            <strong>Panel administrativo</strong>
+            <p>Gestión de servicios y mensajes con login privado</p>
+        </div>
+        <div class="card">
+            <div class="icon">⚖️</div>
+            <strong>Páginas legales</strong>
+            <p>Aviso de Privacidad y Política de Cookies</p>
+        </div>
+        <div class="card">
+            <div class="icon">📱</div>
+            <strong>Diseño responsive</strong>
+            <p>Adaptable a móvil, tableta y escritorio</p>
+        </div>
+        <div class="card">
+            <div class="icon">🔍</div>
+            <strong>SEO optimizado</strong>
+            <p>Meta tags, Open Graph y datos estructurados</p>
+        </div>
+        <div class="card">
+            <div class="icon">🛡️</div>
+            <strong>Anti-spam</strong>
+            <p>CAPTCHA matemático + honeypot en formulario</p>
+        </div>
+    </div>
+
+    <div class="box ok">
+        <strong>Estado del proyecto:</strong>
+        <p style="margin-top:6px;">100% funcional, probado en entorno local con Laragon (Apache + MySQL + PHP 8.4). Listo para despliegue a producción.</p>
+    </div>
+</section>
+
+<!-- ============================================================
+     2. CUMPLIMIENTO PROPUESTA
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">2. Propuesta vs. entrega<br>Página 4</div>
+    </div>
+
+    <h1 class="section">2. Cumplimiento de la propuesta original<small>Lista verificada punto por punto</small></h1>
+
+    <p>A continuación se contrasta cada elemento solicitado en la propuesta inicial con lo entregado:</p>
+
+    <table>
+        <tr>
+            <th style="width:30%;">Solicitado</th>
+            <th>Entregado</th>
+            <th style="width:60px;">Estado</th>
+        </tr>
+        <tr>
+            <td><strong>Archivo fuente</strong></td>
+            <td>Proyecto Laravel 11 completo (controladores, modelos, migraciones, vistas, seeders, configuración) entregado en carpeta organizada.</td>
+            <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+            <td><strong>3 revisiones</strong></td>
+            <td>Incluidas dentro del ciclo de desarrollo. Reservadas para ajustes finales del cliente.</td>
+            <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+            <td><strong>Íconos de redes sociales</strong></td>
+            <td>Íconos SVG nativos para Facebook, Instagram, Twitter/X, YouTube y WhatsApp, configurables desde un único archivo (.env).</td>
+            <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+            <td><strong>3 a 5 páginas</strong></td>
+            <td>4 páginas públicas (Inicio, Nosotros, Servicios, Contacto) + 2 páginas legales + detalle de cada servicio.</td>
+            <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+            <td><strong>SEO</strong></td>
+            <td>Meta tags por página, Open Graph, Twitter Cards, datos estructurados JSON-LD tipo NGO, canonical, optimización de imágenes.</td>
+            <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+            <td><strong>Formulario de contacto</strong></td>
+            <td>Formulario completo con validación, anti-spam (CAPTCHA matemático + honeypot), almacenamiento en BD y envío de correo al administrador.</td>
+            <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+            <td><strong>Uso comercial</strong></td>
+            <td>Sin restricciones. Código basado en Laravel (licencia MIT).</td>
+            <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+            <td><strong>Entrega en 1 semana</strong></td>
+            <td>Cumplida.</td>
+            <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+            <td><strong>Imágenes</strong></td>
+            <td>Estructura lista en /public/images con guía documentada. Las fotografías compartidas por el cliente se integran automáticamente.</td>
+            <td><span class="check">✓</span></td>
+        </tr>
+    </table>
+
+    <h2>Extras incluidos sin costo adicional</h2>
+    <ul>
+        <li>Panel administrativo completo con CRUD de servicios y bandeja de mensajes.</li>
+        <li>Banner de cookies emergente conforme a LFPDPPP.</li>
+        <li>Aviso de Privacidad Integral con derechos ARCO.</li>
+        <li>Soporte para múltiples sedes (San Francisco y Zaragoza).</li>
+        <li>Botones de WhatsApp directo para cada sede.</li>
+    </ul>
+</section>
+
+<!-- ============================================================
+     3. MAPA DEL SITIO
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">3. Mapa del sitio<br>Página 5</div>
+    </div>
+
+    <h1 class="section">3. Mapa del sitio<small>Estructura jerárquica de navegación</small></h1>
+
+    <div class="sitemap">
+        <span class="root">🌐 cafamilias.org</span>
+        <ul>
+            <li>
+                <strong>/ — Inicio</strong>
+                <small>Hero "Fortaleciendo Familias" · Servicios destacados · Valores · Galería · CTA</small>
+            </li>
+            <li>
+                <strong>/nosotros — Nosotros</strong>
+                <small>Historia · Misión, Visión y Valores · Comunidades atendidas</small>
+            </li>
+            <li>
+                <strong>/programas — Servicios</strong>
+                <small>Catálogo de los 3 servicios (Asesoría Legal, Apoyo Psicológico, Asistencia Social)</small>
+            </li>
+            <li>
+                <strong>/programas/&#123;slug&#125; — Detalle de servicio</strong>
+                <small>Página individual con descripción completa de cada servicio</small>
+            </li>
+            <li>
+                <strong>/contacto — Contacto</strong>
+                <small>Sedes (San Francisco y Zaragoza) · Formulario con CAPTCHA · Horario</small>
+            </li>
+            <li>
+                <strong>/cookies — Política de Cookies</strong>
+                <small>Tipos, finalidades, consentimiento y derechos ARCO</small>
+            </li>
+            <li>
+                <strong>/aviso-de-privacidad — Aviso de Privacidad</strong>
+                <small>Aviso de privacidad integral conforme a LFPDPPP</small>
+            </li>
+        </ul>
+    </div>
+
+    <h2>Zona privada (panel administrativo)</h2>
+
+    <div class="sitemap" style="background:#FFE1ED;">
+        <span class="root" style="background:var(--accent);">🔐 Acceso restringido</span>
+        <ul>
+            <li><strong>/admin/login</strong><small>Pantalla de inicio de sesión</small></li>
+            <li><strong>/admin</strong><small>Dashboard con estadísticas</small></li>
+            <li><strong>/admin/programs</strong><small>CRUD de servicios (crear, editar, eliminar)</small></li>
+            <li><strong>/admin/messages</strong><small>Bandeja de mensajes del formulario de contacto</small></li>
+        </ul>
+    </div>
+</section>
+
+<!-- ============================================================
+     4. DETALLE DE PÁGINAS PÚBLICAS - parte 1
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">4. Detalle de páginas<br>Página 6</div>
+    </div>
+
+    <h1 class="section">4. Detalle de páginas públicas<small>Contenido y bloques de cada vista</small></h1>
+
+    <h2>4.1 Inicio</h2>
+    <p>Página de entrada. Tiene el objetivo de captar la atención, comunicar el propósito de CAF y guiar al visitante hacia los servicios o el contacto.</p>
+    <h3>Bloques:</h3>
+    <ul>
+        <li><strong>Hero principal</strong> con fondo en degradado de marca, etiqueta "Fortaleciendo Familias" y dos llamados a la acción.</li>
+        <li><strong>Bloque "Familias unidas, familias fuertes"</strong> con texto institucional y fotografía de familia multigeneracional.</li>
+        <li><strong>Sección de servicios destacados</strong> con tarjetas y íconos profesionales.</li>
+        <li><strong>Sección de valores</strong> (Amor, Solidaridad, Justicia, Familia).</li>
+        <li><strong>CTA final</strong> con invitación a agendar cita.</li>
+    </ul>
+
+    <h2>4.2 Nosotros</h2>
+    <p>Página institucional. Comunica la historia, la misión y los valores del CAF, y muestra evidencia visual del trabajo realizado.</p>
+    <h3>Bloques:</h3>
+    <ul>
+        <li>Banner secundario con título "Quiénes somos".</li>
+        <li>Sección "Nuestra historia" con fotografía y narrativa de la asociación.</li>
+        <li>Misión, Visión y Valores en tres tarjetas con íconos.</li>
+        <li>Galería "Comunidades que atendemos" con tres fotografías representativas.</li>
+        <li>CTA hacia Contacto.</li>
+    </ul>
+
+    <h2>4.3 Servicios</h2>
+    <p>Catálogo completo de los tres servicios profesionales ofrecidos. Cada servicio cuenta con su propia página de detalle.</p>
+    <h3>Bloques:</h3>
+    <ul>
+        <li>Banner secundario "Nuestros servicios — Atención integral y profesional".</li>
+        <li>Tres tarjetas (Asesoría Legal, Apoyo Psicológico, Asistencia Social) con ícono o foto, título, resumen y botón "Más información".</li>
+        <li>Página de detalle individual por servicio con descripción completa.</li>
+        <li>CTA "Agendar una cita".</li>
+    </ul>
+</section>
+
+<!-- ============================================================
+     4. DETALLE DE PÁGINAS PÚBLICAS - parte 2
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">4. Detalle de páginas<br>Página 7</div>
+    </div>
+
+    <h2>4.4 Contacto</h2>
+    <p>Página de conversión. Permite al visitante conocer ambas sedes y enviar un mensaje a la asociación.</p>
+    <h3>Bloques:</h3>
+    <ul>
+        <li>Banner secundario "Contáctanos".</li>
+        <li><strong>Dos tarjetas de sede</strong>:
+            <ul>
+                <li><strong>CAF San Francisco</strong> — C. Soneto 156, Carlos Castillo Peraza 951, Col. Chihuahua. Tel. (656) 634 7031 / Cel. (656) 275 5776 con enlace directo a WhatsApp.</li>
+                <li><strong>CAF Zaragoza</strong> — C. Aguascalientes 107 Oriente, Zaragoza, 32590 Juárez, Chih. Tel. (656) 639 5874 / Cel. (656) 843 7143 con enlace directo a WhatsApp.</li>
+            </ul>
+        </li>
+        <li><strong>Información general</strong>: correo (mujer_familia@hotmail.com) y horario (Lunes a viernes, 8:00 am – 6:00 pm).</li>
+        <li><strong>Formulario de contacto</strong> con campos: Nombre, Correo, Teléfono (opcional), Asunto, Mensaje, y verificación CAPTCHA matemática.</li>
+        <li>Íconos de redes sociales al pie del formulario.</li>
+    </ul>
+
+    <h2>4.5 Páginas legales</h2>
+
+    <h3>Política de Cookies</h3>
+    <p>Explica qué cookies se utilizan en el sitio, sus finalidades, duración y cómo gestionarlas. Incluye enlaces de configuración a los navegadores más usados. Cumple con la LFPDPPP.</p>
+
+    <h3>Aviso de Privacidad Integral</h3>
+    <p>12 apartados conforme a la LFPDPPP y los Lineamientos del INAI:</p>
+    <ol>
+        <li>Identidad y domicilio del responsable</li>
+        <li>Datos personales que se recaban (incluye datos sensibles)</li>
+        <li>Finalidades primarias y secundarias</li>
+        <li>Fundamento legal</li>
+        <li>Transferencia de datos</li>
+        <li>Medios para ejercer derechos ARCO</li>
+        <li>Revocación del consentimiento</li>
+        <li>Limitación del uso o divulgación</li>
+        <li>Uso de cookies</li>
+        <li>Medidas de seguridad</li>
+        <li>Cambios al aviso</li>
+        <li>Autoridad reguladora (INAI)</li>
+    </ol>
+
+    <h2>4.6 Banner emergente de cookies</h2>
+    <p>Aparece en la primera visita al sitio. Permite al usuario:</p>
+    <ul>
+        <li><strong>Aceptar todas</strong> las cookies.</li>
+        <li>Permitir <strong>solo las necesarias</strong>.</li>
+        <li>Acceder a la página de configuración para más detalles.</li>
+    </ul>
+    <p>La elección se guarda en el navegador del usuario (<code>localStorage</code>) y puede revocarse en cualquier momento desde la política de cookies.</p>
+</section>
+
+<!-- ============================================================
+     5. SERVICIOS OFRECIDOS
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">5. Servicios ofrecidos<br>Página 8</div>
+    </div>
+
+    <h1 class="section">5. Servicios ofrecidos<small>Tres áreas profesionales de atención</small></h1>
+
+    <table>
+        <tr><th style="width:30%;">Servicio</th><th>Descripción</th></tr>
+        <tr>
+            <td>
+                <strong style="color:var(--accent);">⚖️ Asesoría Legal</strong>
+                <p style="margin-top:6px; font-size:9pt; color:var(--muted);">Orientación y apoyo profesional para su familia.</p>
+            </td>
+            <td>Orientación jurídica gratuita y acompañamiento legal en temas familiares: divorcios, pensión alimenticia, custodia de menores, violencia familiar, regularización de documentos y trámites civiles. Equipo de abogados con cédula profesional.</td>
+        </tr>
+        <tr>
+            <td>
+                <strong style="color:var(--accent);">🧠 Apoyo Psicológico</strong>
+                <p style="margin-top:6px; font-size:9pt; color:var(--muted);">Orientación y apoyo profesional para su familia.</p>
+            </td>
+            <td>Atención psicológica individual, de pareja y familiar a precios accesibles. Terapia para niñas, niños, adolescentes y adultos en duelo, ansiedad, depresión, manejo de emociones, comunicación familiar y violencia. Psicólogos con cédula profesional.</td>
+        </tr>
+        <tr>
+            <td>
+                <strong style="color:var(--accent);">🤝 Asistencia Social</strong>
+                <p style="margin-top:6px; font-size:9pt; color:var(--muted);">Orientación y apoyo profesional para tu familia.</p>
+            </td>
+            <td>Acompañamiento en la gestión de apoyos sociales, canalización a instituciones públicas y privadas, talleres de desarrollo humano y orientación para familias en situación de vulnerabilidad.</td>
+        </tr>
+    </table>
+
+    <h2>Cómo se administran los servicios</h2>
+    <p>Cada servicio es <strong>editable desde el panel administrativo</strong>. El administrador puede:</p>
+    <ul>
+        <li>Cambiar título, resumen, descripción larga e imagen.</li>
+        <li>Activar o desactivar un servicio sin eliminarlo.</li>
+        <li>Marcar un servicio como "destacado" para que aparezca en la página de inicio.</li>
+        <li>Definir el orden en que se muestran.</li>
+        <li>Agregar nuevos servicios si crece la oferta.</li>
+    </ul>
+
+    <div class="box accent">
+        <strong>Nota sobre las imágenes:</strong>
+        <p style="margin-top:6px;">Las fotografías compartidas por el cliente se asignan automáticamente a cada servicio cuando se guardan en <code>/public/images/</code> con los nombres documentados en el archivo <code>README-IMAGENES.md</code>.</p>
+    </div>
+</section>
+
+<!-- ============================================================
+     6. PANEL ADMINISTRATIVO
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">6. Panel administrativo<br>Página 9</div>
+    </div>
+
+    <h1 class="section">6. Panel administrativo<small>Zona privada para gestionar el sitio</small></h1>
+
+    <p>El panel administrativo permite al equipo de CAF gestionar el contenido del sitio sin depender del desarrollador. Se accede desde <code>/admin/login</code> con credenciales privadas.</p>
+
+    <h2>6.1 Dashboard</h2>
+    <p>Pantalla inicial al iniciar sesión. Muestra cuatro indicadores en tiempo real:</p>
+    <div class="cards">
+        <div class="card"><strong>Servicios totales</strong><p>Total de servicios registrados en el sitio.</p></div>
+        <div class="card"><strong>Servicios activos</strong><p>Servicios visibles para los visitantes.</p></div>
+        <div class="card"><strong>Mensajes totales</strong><p>Cantidad acumulada de mensajes recibidos.</p></div>
+        <div class="card"><strong>Mensajes sin leer</strong><p>Mensajes pendientes de revisar.</p></div>
+    </div>
+    <p>Además, una tabla con los <strong>5 mensajes más recientes</strong> para acceso rápido.</p>
+
+    <h2>6.2 Gestión de servicios</h2>
+    <p>Pantalla de listado con todos los servicios. Acciones disponibles:</p>
+    <ul>
+        <li><strong>Crear</strong> un nuevo servicio con título, resumen, descripción larga e imagen.</li>
+        <li><strong>Editar</strong> cualquier servicio existente.</li>
+        <li><strong>Activar / desactivar</strong> un servicio (lo oculta o lo muestra al público).</li>
+        <li><strong>Destacar</strong> en home: lo muestra en la portada del sitio.</li>
+        <li><strong>Ordenar</strong> mediante un campo numérico.</li>
+        <li><strong>Eliminar</strong> un servicio (con confirmación de seguridad).</li>
+    </ul>
+
+    <h2>6.3 Bandeja de mensajes</h2>
+    <p>Inbox de los mensajes recibidos a través del formulario de contacto. Funciones:</p>
+    <ul>
+        <li>Listado paginado con fecha, remitente, asunto y estado (leído / sin leer).</li>
+        <li>Vista detallada de cada mensaje, con botón "Responder por correo" que abre el cliente de email predeterminado.</li>
+        <li>Marcar como leído / no leído manualmente.</li>
+        <li>Eliminar mensajes individualmente.</li>
+        <li>Notificación automática por correo al administrador cuando llega un mensaje nuevo (configurable).</li>
+    </ul>
+
+    <h2>6.4 Seguridad del panel</h2>
+    <ul>
+        <li>Autenticación con sesión y contraseña cifrada (algoritmo bcrypt de Laravel).</li>
+        <li>Protección CSRF en todas las acciones que modifican datos.</li>
+        <li>Middleware que valida que solo usuarios con rol administrador puedan ingresar.</li>
+        <li>Sesiones que expiran tras 2 horas de inactividad por defecto.</li>
+    </ul>
+</section>
+
+<!-- ============================================================
+     7. IDENTIDAD VISUAL
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">7. Identidad visual<br>Página 10</div>
+    </div>
+
+    <h1 class="section">7. Identidad visual<small>Marca, paleta y experiencia de usuario</small></h1>
+
+    <h2>7.1 Marca</h2>
+    <p>Se respeta la identidad existente del CAF: el isotipo del corazón con figuras en degradado se usa en el navbar, footer y otros puntos del sitio. El nombre completo "Centro de Apoyo para la Familia A.C." acompaña al logo, junto al lema "Atención integral y profesional".</p>
+
+    <h2>7.2 Paleta institucional</h2>
+    <div class="palette">
+        <div class="swatch" style="background:#E91E63;">Rosa magenta<small>#E91E63 — Acento</small></div>
+        <div class="swatch" style="background:#5E3B9E;">Púrpura<small>#5E3B9E — Primario</small></div>
+        <div class="swatch" style="background:#2BB8C4;">Turquesa<small>#2BB8C4 — Secundario</small></div>
+    </div>
+
+    <p>Estos tres colores forman un degradado de marca usado en banners y elementos principales. Comunican: calidez (rosa), profesionalismo (púrpura) y esperanza (turquesa).</p>
+
+    <h2>7.3 Tipografía</h2>
+    <ul>
+        <li><strong>Montserrat</strong> (Google Fonts) para títulos y encabezados.</li>
+        <li><strong>Open Sans</strong> (Google Fonts) para texto corrido.</li>
+        <li>Ambas son libres, gratuitas y legibles en todos los dispositivos.</li>
+    </ul>
+
+    <h2>7.4 Experiencia de usuario (UX)</h2>
+    <ul>
+        <li><strong>Diseño responsive</strong>: el sitio se adapta automáticamente a móvil (320 px), tableta (768 px) y escritorio (1180 px o más).</li>
+        <li><strong>Menú hamburguesa</strong> en pantallas pequeñas.</li>
+        <li><strong>Animaciones suaves</strong> en hover de botones y tarjetas.</li>
+        <li><strong>Contraste alto</strong> en textos sobre fondos coloridos (sombras y overlays para garantizar legibilidad).</li>
+        <li><strong>Accesibilidad</strong>: atributos <code>alt</code> en imágenes, etiquetas <code>aria-label</code> en íconos y formularios, navegación por teclado.</li>
+    </ul>
+</section>
+
+<!-- ============================================================
+     8. CARACTERÍSTICAS TÉCNICAS
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">8. Técnico<br>Página 11</div>
+    </div>
+
+    <h1 class="section">8. Características técnicas<small>Tecnologías, requisitos y rendimiento</small></h1>
+
+    <h2>8.1 Stack tecnológico</h2>
+    <table>
+        <tr><th>Componente</th><th>Tecnología</th></tr>
+        <tr><td>Framework</td><td>Laravel 11 (PHP)</td></tr>
+        <tr><td>Lenguaje</td><td>PHP 8.2 o superior</td></tr>
+        <tr><td>Base de datos</td><td>MySQL 8 (compatible también con MariaDB 10.4+)</td></tr>
+        <tr><td>Servidor web</td><td>Apache 2.4 o Nginx</td></tr>
+        <tr><td>Plantillas</td><td>Blade (motor nativo de Laravel)</td></tr>
+        <tr><td>Estilos</td><td>CSS 3 personalizado con variables, sin frameworks pesados</td></tr>
+        <tr><td>JavaScript</td><td>Vanilla JS (sin frameworks, ligero y rápido)</td></tr>
+        <tr><td>Tipografía</td><td>Google Fonts (Montserrat + Open Sans)</td></tr>
+        <tr><td>Íconos</td><td>SVG inline (sin librerías externas)</td></tr>
+        <tr><td>Sistema de correo</td><td>Laravel Mail con soporte SMTP</td></tr>
+    </table>
+
+    <h2>8.2 Requisitos de servidor</h2>
+    <ul>
+        <li>PHP 8.2+ con extensiones: <code>pdo_mysql</code>, <code>mbstring</code>, <code>openssl</code>, <code>tokenizer</code>, <code>xml</code>, <code>ctype</code>, <code>json</code>, <code>bcmath</code>, <code>fileinfo</code>.</li>
+        <li>MySQL 8 / MariaDB 10.4+.</li>
+        <li>Composer 2 instalado en el servidor.</li>
+        <li>Espacio en disco: 200 MB iniciales (sin contar imágenes ni mensajes).</li>
+        <li>Memoria PHP recomendada: 128 MB o más.</li>
+    </ul>
+
+    <h2>8.3 Funcionalidades de seguridad</h2>
+    <ul>
+        <li>Protección <strong>CSRF</strong> en todos los formularios.</li>
+        <li>Sanitización automática de entradas (Eloquent + Blade).</li>
+        <li><strong>Hashing bcrypt</strong> para contraseñas.</li>
+        <li><strong>CAPTCHA matemático</strong> en el formulario de contacto.</li>
+        <li><strong>Honeypot</strong> invisible adicional contra bots básicos.</li>
+        <li>Validación de tipos y longitudes en todos los inputs.</li>
+        <li>Sesiones cifradas con clave única por instalación (APP_KEY).</li>
+    </ul>
+
+    <h2>8.4 SEO incluido</h2>
+    <ul>
+        <li>Meta title y meta description únicos por página.</li>
+        <li>Etiquetas Open Graph (Facebook, LinkedIn).</li>
+        <li>Twitter Cards.</li>
+        <li>Datos estructurados JSON-LD (tipo <code>NGO</code> de schema.org).</li>
+        <li>URLs amigables con slugs (ej. <code>/programas/asesoria-legal</code>).</li>
+        <li>Etiquetas <code>canonical</code> automáticas.</li>
+        <li>Imágenes con texto alternativo.</li>
+    </ul>
+</section>
+
+<!-- ============================================================
+     9. CUMPLIMIENTO NORMATIVO
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">9. Cumplimiento legal<br>Página 12</div>
+    </div>
+
+    <h1 class="section">9. Cumplimiento normativo<small>Protección de datos personales según la ley mexicana</small></h1>
+
+    <p>El sitio web está diseñado para cumplir con la <strong>Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)</strong>, su Reglamento y los Lineamientos del Aviso de Privacidad publicados por el INAI.</p>
+
+    <h2>9.1 Aviso de Privacidad Integral</h2>
+    <p>Contiene los 12 apartados que exige la normativa mexicana:</p>
+    <ul>
+        <li>Identidad y domicilio del responsable.</li>
+        <li>Tipos de datos personales recabados, incluyendo el tratamiento explícito de <strong>datos sensibles</strong> (salud, estado emocional, situación familiar), propios de los servicios de psicología, asistencia legal en temas familiares y atención a víctimas.</li>
+        <li>Finalidades primarias (atención al usuario) y secundarias (boletines, eventos), con opción de oposición.</li>
+        <li>Fundamento legal de cada tratamiento.</li>
+        <li>Transferencia de datos: explicación detallada de los casos en los que CAF podría compartir información (por obligación legal o canalización institucional).</li>
+        <li>Procedimiento completo para ejercer los <strong>derechos ARCO</strong> (Acceso, Rectificación, Cancelación, Oposición), con plazo máximo de respuesta de 20 días hábiles.</li>
+        <li>Revocación del consentimiento.</li>
+        <li>Limitación del uso o divulgación.</li>
+        <li>Medidas de seguridad implementadas.</li>
+        <li>Información de la autoridad reguladora (INAI).</li>
+    </ul>
+
+    <h2>9.2 Política de Cookies</h2>
+    <ul>
+        <li>Banner emergente en la primera visita con opciones claras (aceptar todas / solo necesarias).</li>
+        <li>Página detallada que clasifica las cookies (técnicas, de preferencias, de análisis).</li>
+        <li>Mecanismo de revocación visible y accesible.</li>
+        <li>Enlaces a las guías oficiales de configuración para los principales navegadores.</li>
+    </ul>
+
+    <h2>9.3 Recomendaciones para mantener el cumplimiento</h2>
+    <div class="box">
+        <ol>
+            <li>Validar el <strong>Aviso de Privacidad</strong> con el responsable legal de CAF antes del lanzamiento, para confirmar domicilio fiscal exacto, finalidades reales y datos del oficial de protección de datos si lo hubiera.</li>
+            <li>Revisar el aviso al menos una vez al año o ante cambios en los servicios.</li>
+            <li>Capacitar al equipo administrador en la confidencialidad de los mensajes recibidos a través del formulario.</li>
+            <li>Conservar registros internos del cumplimiento por al menos 5 años.</li>
+        </ol>
+    </div>
+</section>
+
+<!-- ============================================================
+     10. INSTALACIÓN Y DESPLIEGUE
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">10. Instalación<br>Página 13</div>
+    </div>
+
+    <h1 class="section">10. Instalación y despliegue<small>Pasos para poner el sitio en producción</small></h1>
+
+    <h2>10.1 Instalación local (desarrollo)</h2>
+    <p>Recomendado para Windows: Laragon (incluye PHP, MySQL, Apache).</p>
+    <div class="code">composer install
+cp .env.example .env
+php artisan key:generate
+
+# Crear la base de datos:
+mysql -u root -e "CREATE DATABASE valores_familia CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+
+php artisan migrate --seed
+php artisan storage:link
+php artisan serve</div>
+    <p>El sitio queda disponible en <code>http://localhost:8000</code>.</p>
+
+    <h2>10.2 Despliegue a producción (hosting)</h2>
+    <p>El sitio es compatible con cualquier hosting que soporte Laravel: cPanel, Plesk, VPS, Hostinger, SiteGround, Forge, etc.</p>
+    <ol>
+        <li>Subir la totalidad del proyecto (sin la carpeta <code>vendor</code>) por FTP / SFTP / Git.</li>
+        <li>Apuntar el dominio a la carpeta <code>public/</code> (no a la raíz).</li>
+        <li>Ejecutar en el servidor:
+            <div class="code">composer install --no-dev --optimize-autoloader
+php artisan migrate --seed --force
+php artisan storage:link
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache</div>
+        </li>
+        <li>Editar el archivo <code>.env</code> de producción con:
+            <ul>
+                <li><code>APP_ENV=production</code></li>
+                <li><code>APP_DEBUG=false</code></li>
+                <li><code>APP_URL=https://www.cafamilias.org</code> (o el dominio real)</li>
+                <li>Credenciales reales de la base de datos y del servidor SMTP.</li>
+            </ul>
+        </li>
+        <li>Configurar el certificado SSL (HTTPS), idealmente con Let's Encrypt.</li>
+    </ol>
+
+    <h2>10.3 Configuración del correo</h2>
+    <p>Para que el formulario de contacto envíe correos reales al administrador, editar las variables en el archivo <code>.env</code>:</p>
+    <div class="code">MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com   (o el SMTP del proveedor)
+MAIL_PORT=587
+MAIL_USERNAME=usuario@gmail.com
+MAIL_PASSWORD=contraseña-de-aplicación
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="contacto@cafamilias.org"
+MAIL_ADMIN_ADDRESS="mujer_familia@hotmail.com"</div>
+    <p>Para Hotmail/Outlook se recomienda usar <strong>contraseña de aplicación</strong> generada en la cuenta del correo.</p>
+</section>
+
+<!-- ============================================================
+     11. CREDENCIALES
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">11. Credenciales<br>Página 14</div>
+    </div>
+
+    <h1 class="section">11. Credenciales y accesos<small>Información sensible — guardar en lugar seguro</small></h1>
+
+    <div class="box accent">
+        <strong>⚠️ Importante:</strong>
+        <p style="margin-top:6px;">Las siguientes credenciales son las definidas por defecto en el seeder. <strong>Debe cambiarlas antes de publicar el sitio en producción.</strong> Para cambiarlas desde Laravel: <code>php artisan tinker</code> y luego <code>User::find(1)->update(['password' => bcrypt('NUEVA_CONTRASEÑA')]);</code></p>
+    </div>
+
+    <h2>11.1 Acceso al panel administrativo</h2>
+    <table>
+        <tr><th>Campo</th><th>Valor</th></tr>
+        <tr><td>URL</td><td><code>https://[dominio]/admin/login</code></td></tr>
+        <tr><td>Email</td><td><code>admin@cafamilias.org</code></td></tr>
+        <tr><td>Contraseña</td><td><code>AdminCAF2026!</code></td></tr>
+        <tr><td>Rol</td><td>Administrador (acceso total)</td></tr>
+    </table>
+
+    <h2>11.2 Información institucional configurada</h2>
+    <table>
+        <tr><th>Dato</th><th>Valor actual</th></tr>
+        <tr><td>Nombre institucional</td><td>Centro de Apoyo para la Familia A.C.</td></tr>
+        <tr><td>Abreviatura</td><td>CAF</td></tr>
+        <tr><td>Lema</td><td>Atención integral y profesional</td></tr>
+        <tr><td>Frase complementaria</td><td>Familias unidas, familias fuertes</td></tr>
+        <tr><td>Correo institucional</td><td>mujer_familia@hotmail.com</td></tr>
+        <tr><td>Horario</td><td>Lunes a viernes: 8:00 am – 6:00 pm</td></tr>
+    </table>
+
+    <h2>11.3 Sedes registradas</h2>
+    <table>
+        <tr><th>Sede</th><th>Información</th></tr>
+        <tr>
+            <td><strong>CAF San Francisco</strong></td>
+            <td>
+                C. Soneto 156, Carlos Castillo Peraza 951, Col. Chihuahua, México<br>
+                Tel: (656) 634 7031 · Cel: (656) 275 5776
+            </td>
+        </tr>
+        <tr>
+            <td><strong>CAF Zaragoza</strong></td>
+            <td>
+                C. Aguascalientes 107 Oriente, Zaragoza, 32590 Juárez, Chih., México<br>
+                Tel: (656) 639 5874 · Cel: (656) 843 7143
+            </td>
+        </tr>
+    </table>
+
+    <h2>11.4 Redes sociales (configurables)</h2>
+    <p>Las redes sociales se configuran en el archivo <code>.env</code>. Variables disponibles:</p>
+    <ul>
+        <li><code>SOCIAL_FACEBOOK</code></li>
+        <li><code>SOCIAL_INSTAGRAM</code></li>
+        <li><code>SOCIAL_TWITTER</code></li>
+        <li><code>SOCIAL_YOUTUBE</code></li>
+        <li><code>SOCIAL_WHATSAPP</code> (solo el número, sin signos)</li>
+    </ul>
+    <p>Si una variable se deja vacía, el ícono correspondiente no se muestra en el sitio.</p>
+</section>
+
+<!-- ============================================================
+     12. SOPORTE Y PRÓXIMOS PASOS
+============================================================ -->
+<section class="page">
+    <div class="page-header">
+        <div class="left"><strong>Centro de Apoyo para la Familia A.C.</strong><small>Atención integral y profesional</small></div>
+        <div class="right">12. Soporte<br>Página 15</div>
+    </div>
+
+    <h1 class="section">12. Soporte y próximos pasos<small>Recomendaciones para mantener y hacer crecer el sitio</small></h1>
+
+    <h2>12.1 Mantenimiento recomendado</h2>
+    <ul>
+        <li><strong>Mensual:</strong> revisar la bandeja de mensajes, hacer respaldo de la base de datos.</li>
+        <li><strong>Trimestral:</strong> actualizar dependencias de Laravel (parches de seguridad).</li>
+        <li><strong>Semestral:</strong> revisar el contenido del Aviso de Privacidad y la Política de Cookies.</li>
+        <li><strong>Anual:</strong> renovar el certificado SSL si no es automático, revisar el dominio y el hosting.</li>
+    </ul>
+
+    <h2>12.2 Posibles ampliaciones (fase 2)</h2>
+    <div class="cards">
+        <div class="card"><strong>📰 Blog / Noticias</strong><p>Publicación de artículos sobre los temas que atiende CAF.</p></div>
+        <div class="card"><strong>💳 Donaciones online</strong><p>Pasarela de pago segura (PayPal, Mercado Pago, Stripe).</p></div>
+        <div class="card"><strong>📅 Agenda de citas</strong><p>Reservación en línea con calendario y confirmación por correo.</p></div>
+        <div class="card"><strong>🌐 Multi-idioma</strong><p>Versión en inglés para públicos binacionales (Juárez).</p></div>
+        <div class="card"><strong>📊 Analytics</strong><p>Integración con Google Analytics 4 para medir visitas.</p></div>
+        <div class="card"><strong>📍 Mapas</strong><p>Mapas interactivos de Google con ambas sedes.</p></div>
+    </div>
+
+    <h2>12.3 Garantía y soporte</h2>
+    <div class="box ok">
+        <p>El proyecto se entrega <strong>100% funcional y probado</strong>. Se incluyen las 3 revisiones acordadas en la propuesta para ajustes y correcciones.</p>
+    </div>
+
+    <h2>12.4 Recursos incluidos en la entrega</h2>
+    <table>
+        <tr><th>Archivo</th><th>Descripción</th></tr>
+        <tr><td><code>codigo-fuente/</code></td><td>Carpeta completa del proyecto Laravel listo para instalar.</td></tr>
+        <tr><td><code>README.md</code></td><td>Guía técnica de instalación local y producción.</td></tr>
+        <tr><td><code>ENTREGA.md</code></td><td>Manifiesto técnico estructurado de la entrega.</td></tr>
+        <tr><td><code>ENTREGA-CAF-Sitio-Web.pdf</code></td><td>Este documento institucional de entrega.</td></tr>
+        <tr><td><code>public/images/README-IMAGENES.md</code></td><td>Guía para colocar las fotografías del cliente.</td></tr>
+    </table>
+
+    <div class="footer-note">
+        Documento generado para Centro de Apoyo para la Familia A.C. — {{DATE}}<br>
+        Confidencial. Solo para uso interno del cliente.
+    </div>
+</section>
+
+<script>
+// Reemplaza marcadores con la fecha actual
+(function(){
+    const now = new Date();
+    const months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const fecha = `${now.getDate()} de ${months[now.getMonth()]} de ${now.getFullYear()}`;
+    document.body.innerHTML = document.body.innerHTML
+        .replace(/\{\{DATE\}\}/g, fecha)
+        .replace(/\{\{YEAR\}\}/g, now.getFullYear());
+})();
+</script>
+
+</body>
+</html>
