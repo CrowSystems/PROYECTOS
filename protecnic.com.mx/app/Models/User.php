@@ -14,12 +14,14 @@ class User extends Authenticatable
     public const ROLE_CONTENT_EDITOR = 'content_editor';
     public const ROLE_SUPERVISOR = 'report_supervisor';
     public const ROLE_TECHNICIAN = 'technician';
+    public const ROLE_IT_MANAGER = 'it_manager';
 
     public const ROLES = [
         self::ROLE_ADMIN => 'Administrador',
         self::ROLE_CONTENT_EDITOR => 'Editor de contenido',
         self::ROLE_SUPERVISOR => 'Supervisor de reportes',
         self::ROLE_TECHNICIAN => 'Técnico (generador de reportes)',
+        self::ROLE_IT_MANAGER => 'Administrador de activos (IT)',
     ];
 
     protected $fillable = [
@@ -57,5 +59,24 @@ class User extends Authenticatable
     public function reports()
     {
         return $this->hasMany(Report::class, 'technician_id');
+    }
+
+    // ---------- Relaciones de Activos / Inventario ----------
+
+    /** Asignaciones históricas de equipo recibidas por este usuario */
+    public function assetAssignments()
+    {
+        return $this->hasMany(AssetAssignment::class, 'user_id')->latest('assigned_at');
+    }
+
+    /** Asignaciones vigentes (equipos que tiene actualmente) */
+    public function currentAssetAssignments()
+    {
+        return $this->hasMany(AssetAssignment::class, 'user_id')->whereNull('released_at');
+    }
+
+    public function hasAnyAsset(): bool
+    {
+        return $this->currentAssetAssignments()->exists();
     }
 }

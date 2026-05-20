@@ -50,6 +50,18 @@
                 <a href="<?php echo e(route('technician.reports.index')); ?>" class="sidebar-link <?php echo e(request()->routeIs('technician.reports.*') ? 'active' : ''); ?> block px-3 py-2 rounded hover:bg-slate-800">Mis reportes</a>
                 <a href="<?php echo e(route('technician.reports.create')); ?>" class="block px-3 py-2 rounded bg-emerald-600 hover:bg-emerald-700 text-white mt-2">+ Nuevo reporte</a>
             <?php endif; ?>
+
+            <?php if(auth()->user()->hasRole([\App\Models\User::ROLE_ADMIN, \App\Models\User::ROLE_IT_MANAGER])): ?>
+                <div class="pt-4 pb-1 px-3 text-xs uppercase text-slate-500">Activos / IT</div>
+                <a href="<?php echo e(route('assets.index')); ?>"
+                   class="sidebar-link <?php echo e(request()->routeIs('assets.index') || request()->routeIs('assets.create') || request()->routeIs('assets.edit') ? 'active' : ''); ?> block px-3 py-2 rounded hover:bg-slate-800">
+                    Inventario de equipos
+                </a>
+                <a href="<?php echo e(route('assets.types.index')); ?>"
+                   class="sidebar-link <?php echo e(request()->routeIs('assets.types.*') ? 'active' : ''); ?> block px-3 py-2 rounded hover:bg-slate-800">
+                    Tipos de equipo
+                </a>
+            <?php endif; ?>
         </nav>
         <div class="p-4 border-t border-slate-800 text-sm">
             <div class="text-slate-300"><?php echo e(auth()->user()->name); ?></div>

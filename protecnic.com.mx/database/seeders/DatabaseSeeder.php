@@ -55,6 +55,19 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        User::updateOrCreate(
+            ['email' => 'it@portal.test'],
+            [
+                'name' => 'Administrador IT',
+                'password' => Hash::make('password'),
+                'role' => User::ROLE_IT_MANAGER,
+                'phone' => '555-5000',
+            ]
+        );
+
+        // Tipos de equipo iniciales
+        $this->call(AssetTypeSeeder::class);
+
         // ---------- Catálogo base ----------
         $marcas = [
             ['name' => 'Industrial Pro',  'description' => 'Equipos industriales de alta resistencia.'],
