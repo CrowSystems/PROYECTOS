@@ -53,8 +53,8 @@
         <div class="flex flex-wrap gap-4 items-center">
             @foreach($event->brands as $b)
                 <div class="bg-white border border-slate-200 rounded-xl p-4 w-40 h-24 flex items-center justify-center shadow-sm">
-                    @if($b->logo_path)
-                        <img src="{{ asset('storage/'.$b->logo_path) }}" alt="{{ $b->name }}" class="max-h-12 object-contain">
+                    @if($b->hasLogo())
+                        <img src="{{ $b->logoUrl() }}" alt="{{ $b->name }}" class="max-h-12 object-contain">
                     @else
                         <span class="font-bold text-slate-700">{{ $b->name }}</span>
                     @endif

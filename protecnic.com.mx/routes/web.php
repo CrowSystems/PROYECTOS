@@ -49,6 +49,10 @@ Route::post('/contacto', [ContactController::class, 'store'])->name('public.cont
 Route::get('/_diagnostico/uploads', [\App\Http\Controllers\DiagnosticController::class, 'uploads'])
     ->name('diagnostic.uploads');
 
+// Logo de marca servido desde BD (BLOB). Independiente del symlink/storage.
+Route::get('/marcas/{brand}/logo', [\App\Http\Controllers\BrandLogoController::class, 'show'])
+    ->name('brand.logo');
+
 /*
 |--------------------------------------------------------------------------
 | Aprobación del cliente (acceso por token, sin login)

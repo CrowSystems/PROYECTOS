@@ -11,8 +11,8 @@
         <input type="file" name="logo" accept="image/jpeg,image/png,image/gif,image/svg+xml,image/webp"
                class="w-full text-sm">
         <p class="text-xs text-slate-500 mt-1">JPG, PNG, GIF, SVG o WebP. Máximo 5 MB.</p>
-        @if($brand->logo_path)
-            <img src="{{ asset('storage/'.$brand->logo_path) }}" class="mt-2 h-16 border rounded p-1 bg-white">
+        @if($brand->hasLogo())
+            <img src="{{ $brand->logoUrl() }}" class="mt-2 h-16 border rounded p-1 bg-white">
         @endif
     </div>
 

@@ -57,8 +57,8 @@
                 @foreach($carouselBrands as $b)
                     <div class="brand-card flex-shrink-0 w-56 h-40 bg-white rounded-2xl shadow-md
                                 flex items-center justify-center p-6 border border-slate-100">
-                        @if(!empty($b->logo_path))
-                            <img src="{{ asset('storage/'.$b->logo_path) }}" alt="{{ $b->name }}"
+                        @if($b instanceof \App\Models\Brand && $b->hasLogo())
+                            <img src="{{ $b->logoUrl() }}" alt="{{ $b->name }}"
                                  class="max-h-20 max-w-full object-contain">
                         @else
                             <span class="text-2xl font-extrabold text-slate-700 tracking-wide">

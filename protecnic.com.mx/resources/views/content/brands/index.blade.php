@@ -22,8 +22,8 @@
             @foreach($brands as $b)
             <tr class="border-t">
                 <td class="px-4 py-3">
-                    @if($b->logo_path)
-                        <img src="{{ asset('storage/'.$b->logo_path) }}" class="w-12 h-12 object-contain rounded">
+                    @if($b->hasLogo())
+                        <img src="{{ $b->logoUrl() }}" class="w-12 h-12 object-contain rounded">
                     @else <span class="text-slate-400">—</span> @endif
                 </td>
                 <td class="px-4 py-3 font-medium">{{ $b->name }}</td>

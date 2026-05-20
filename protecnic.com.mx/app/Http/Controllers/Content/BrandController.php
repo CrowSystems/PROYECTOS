@@ -50,8 +50,6 @@ class BrandController extends Controller
 
     public function store(Request $request)
     {
-        // Detección temprana de errores de PHP en el upload (códigos 1-8).
-        // Usamos files->get() porque hasFile() oculta el archivo cuando falló el upload.
         $rawLogo = $request->files->get('logo');
         if ($rawLogo && ! $rawLogo->isValid()) {
             return back()->withInput()->withErrors(['logo' => $this->uploadErrorMessage($rawLogo)]);
@@ -59,9 +57,8 @@ class BrandController extends Controller
 
         $data = $this->validateData($request);
 
-        // Para guardar usamos $request->file() (devuelve el wrapper de Laravel con ->store()).
         if ($request->hasFile('logo')) {
-            $data['logo_path'] = $request->file('logo')->store('brands', 'public');
+            $data = array_merge($data, $this->extractLogoData($request->file('logo')));
         }
 
         Brand::create($data);
@@ -83,12 +80,49 @@ class BrandController extends Controller
         $data = $this->validateData($request);
 
         if ($request->hasFile('logo')) {
-            if ($brand->logo_path) Storage::disk('public')->delete($brand->logo_path);
-            $data['logo_path'] = $request->file('logo')->store('brands', 'public');
+            // Borrar archivo viejo si existía (la BD se sobreescribe automáticamente)
+            if ($brand->logo_path) {
+                try { Storage::disk('public')->delete($brand->logo_path); } catch (\Throwable $e) {}
+            }
+            $data = array_merge($data, $this->extractLogoData($request->file('logo')));
         }
 
         $brand->update($data);
         return redirect()->route('content.brands.index')->with('success', 'Marca actualizada.');
+    }
+
+    /**
+     * Lee la imagen subida y devuelve el array con los 3 campos:
+     *   logo_data (binario para BD), logo_mime (tipo MIME), logo_path (ruta en storage si se logró).
+     * Si el filesystem falla, igual guardamos la imagen en la BD — así nunca queda invisible.
+     */
+    protected function extractLogoData(\Illuminate\Http\UploadedFile $file): array
+    {
+        // 1) Leemos el binario ANTES de mover el archivo (la operación move/store invalida el tmp).
+        $binary = @file_get_contents($file->getRealPath());
+        $mime   = $file->getClientMimeType();
+
+        if ($binary === false) {
+            Log::warning('No se pudo leer el binario del logo', ['name' => $file->getClientOriginalName()]);
+            return [];
+        }
+
+        $out = [
+            'logo_data' => $binary,
+            'logo_mime' => $mime,
+        ];
+
+        // 2) Intentamos también guardar el archivo (es opcional ahora; la BD ya tiene la copia).
+        try {
+            $path = $file->store('brands', 'public');
+            if ($path) {
+                $out['logo_path'] = $path;
+            }
+        } catch (\Throwable $e) {
+            Log::warning('No se pudo guardar el logo en storage (la BD sí lo tiene)', ['msg' => $e->getMessage()]);
+        }
+
+        return $out;
     }
 
     public function destroy(Brand $brand)
