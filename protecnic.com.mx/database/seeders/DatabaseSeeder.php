@@ -68,6 +68,12 @@ class DatabaseSeeder extends Seeder
         // Tipos de equipo iniciales
         $this->call(AssetTypeSeeder::class);
 
+        // Marcas principales del sitio (Sodick, SMEC, NOMURA DS, AXILE, CHETO, KEN, PROTH)
+        $this->call(BrandSeeder::class);
+
+        // Eventos demo para que se vea la sección de Eventos en la home
+        $this->call(EventSeeder::class);
+
         // ---------- Catálogo base ----------
         $marcas = [
             ['name' => 'Industrial Pro',  'description' => 'Equipos industriales de alta resistencia.'],
