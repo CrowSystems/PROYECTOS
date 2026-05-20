@@ -12,7 +12,9 @@
                 <th class="px-4 py-3">Logo</th>
                 <th class="px-4 py-3">Nombre</th>
                 <th class="px-4 py-3">Descripción</th>
-                <th class="px-4 py-3">Activa</th>
+                <th class="px-4 py-3 text-center">Activa</th>
+                <th class="px-4 py-3 text-center">En carrusel</th>
+                <th class="px-4 py-3 text-center">Orden</th>
                 <th class="px-4 py-3 text-right">Acciones</th>
             </tr>
         </thead>
@@ -26,7 +28,15 @@
                 </td>
                 <td class="px-4 py-3 font-medium">{{ $b->name }}</td>
                 <td class="px-4 py-3 text-slate-600">{{ Str::limit($b->description, 60) }}</td>
-                <td class="px-4 py-3">{!! $b->active ? '<span class="text-emerald-600">●</span> Sí' : '<span class="text-red-500">●</span> No' !!}</td>
+                <td class="px-4 py-3 text-center">{!! $b->active ? '<span class="text-emerald-600">●</span> Sí' : '<span class="text-red-500">●</span> No' !!}</td>
+                <td class="px-4 py-3 text-center">
+                    @if($b->show_in_carousel)
+                        <span class="inline-block px-2 py-0.5 text-xs rounded bg-sky-100 text-sky-700 font-semibold">Sí</span>
+                    @else
+                        <span class="text-slate-400 text-xs">No</span>
+                    @endif
+                </td>
+                <td class="px-4 py-3 text-center text-slate-600">{{ $b->carousel_order }}</td>
                 <td class="px-4 py-3 text-right">
                     <a href="{{ route('content.brands.edit', $b) }}" class="text-blue-600 hover:underline">Editar</a>
                     <form action="{{ route('content.brands.destroy', $b) }}" method="POST" class="inline" onsubmit="return confirm('¿Eliminar?')">

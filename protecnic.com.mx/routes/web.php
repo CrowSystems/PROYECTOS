@@ -45,6 +45,10 @@ Route::get('/eventos/{event}',  [PublicEventController::class, 'show'])->name('p
 // Formulario de contacto
 Route::post('/contacto', [ContactController::class, 'store'])->name('public.contact.store');
 
+// Diagnóstico de uploads (sólo en local)
+Route::get('/_diagnostico/uploads', [\App\Http\Controllers\DiagnosticController::class, 'uploads'])
+    ->name('diagnostic.uploads');
+
 /*
 |--------------------------------------------------------------------------
 | Aprobación del cliente (acceso por token, sin login)
