@@ -69,6 +69,10 @@ Route::post('/cliente/aprobar/{token}', [ApprovalController::class, 'approve'])-
 Route::middleware('guest')->group(function () {
     Route::get('/login',  [LoginController::class, 'showLogin'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
+
+    // Microsoft Entra ID (Office 365) — empleados internos
+    Route::get('/auth/microsoft',          [\App\Http\Controllers\Auth\MicrosoftAuthController::class, 'redirect'])->name('auth.microsoft.redirect');
+    Route::get('/auth/microsoft/callback', [\App\Http\Controllers\Auth\MicrosoftAuthController::class, 'callback'])->name('auth.microsoft.callback');
 });
 
 Route::middleware('auth')->group(function () {

@@ -26,17 +26,27 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name', 'email', 'phone', 'password', 'role', 'active',
+        'microsoft_id', 'microsoft_data', 'created_via_sso', 'last_microsoft_login_at',
     ];
 
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password', 'remember_token', 'microsoft_data'];
 
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-            'active' => 'boolean',
+            'email_verified_at'        => 'datetime',
+            'password'                 => 'hashed',
+            'active'                   => 'boolean',
+            'created_via_sso'          => 'boolean',
+            'microsoft_data'           => 'array',
+            'last_microsoft_login_at'  => 'datetime',
         ];
+    }
+
+    /** Atajo para saber si la cuenta se autentica con Microsoft */
+    public function isMicrosoftAccount(): bool
+    {
+        return ! empty($this->microsoft_id);
     }
 
     public function hasRole(string|array $role): bool
