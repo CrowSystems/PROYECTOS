@@ -6,11 +6,11 @@
         <a href="<?php echo e(route('public.home')); ?>" class="block">
             
             <img src="<?php echo e(asset('images/logo-protecnic-white.png')); ?>" alt="Protecnic Soluciones CNC"
-                 class="h-12 md:h-14"
+                 class="h-20 md:h-24 lg:h-28 w-auto"
                  onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
             <div style="display:none">
-                <div class="text-2xl font-extrabold tracking-wider text-white">PROTECNIC</div>
-                <div class="text-[11px] tracking-[0.3em] text-slate-300">SOLUCIONES CNC</div>
+                <div class="text-3xl md:text-4xl font-extrabold tracking-wider text-white">PROTECNIC</div>
+                <div class="text-xs tracking-[0.3em] text-slate-300">SOLUCIONES CNC</div>
             </div>
         </a>
 

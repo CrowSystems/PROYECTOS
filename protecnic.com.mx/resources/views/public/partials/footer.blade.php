@@ -68,8 +68,8 @@
         <div class="mt-16 flex flex-col md:flex-row items-center md:items-end justify-between gap-6">
             <a href="{{ route('public.home') }}" class="flex items-center gap-3">
                 <img src="{{ asset('images/logo-protecnic-white.png') }}" alt="Protecnic"
-                     class="h-10" onerror="this.style.display='none';">
-                <span class="text-2xl font-extrabold text-white tracking-wider">PROTECNIC</span>
+                     class="h-16 md:h-20 w-auto" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+                <span class="text-2xl font-extrabold text-white tracking-wider" style="display:none">PROTECNIC</span>
             </a>
             <div class="text-sm text-slate-200">
                 <a href="#aviso" class="hover:text-white transition">Aviso de Privacidad</a>

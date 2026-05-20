@@ -54,8 +54,8 @@
         <div class="flex flex-wrap gap-4 items-center">
             <?php $__currentLoopData = $event->brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="bg-white border border-slate-200 rounded-xl p-4 w-40 h-24 flex items-center justify-center shadow-sm">
-                    <?php if($b->logo_path): ?>
-                        <img src="<?php echo e(asset('storage/'.$b->logo_path)); ?>" alt="<?php echo e($b->name); ?>" class="max-h-12 object-contain">
+                    <?php if($b->hasLogo()): ?>
+                        <img src="<?php echo e($b->logoUrl()); ?>" alt="<?php echo e($b->name); ?>" class="max-h-12 object-contain">
                     <?php else: ?>
                         <span class="font-bold text-slate-700"><?php echo e($b->name); ?></span>
                     <?php endif; ?>

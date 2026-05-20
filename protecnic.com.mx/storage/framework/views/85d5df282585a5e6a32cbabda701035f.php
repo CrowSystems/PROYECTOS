@@ -55,10 +55,10 @@
             <div class="marquee-track flex gap-6 w-max">
                 <?php $__currentLoopData = $carouselBrands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="brand-card flex-shrink-0 w-56 h-40 bg-white rounded-2xl shadow-md
-                                flex items-center justify-center p-6 border border-slate-100">
-                        <?php if(!empty($b->logo_path)): ?>
-                            <img src="<?php echo e(asset('storage/'.$b->logo_path)); ?>" alt="<?php echo e($b->name); ?>"
-                                 class="max-h-20 max-w-full object-contain">
+                                flex items-center justify-center p-4 border border-slate-100">
+                        <?php if($b instanceof \App\Models\Brand && $b->hasLogo()): ?>
+                            <img src="<?php echo e($b->logoUrl()); ?>" alt="<?php echo e($b->name); ?>"
+                                 class="max-h-32 max-w-[90%] object-contain">
                         <?php else: ?>
                             <span class="text-2xl font-extrabold text-slate-700 tracking-wide">
                                 <?php echo e($b->name); ?>

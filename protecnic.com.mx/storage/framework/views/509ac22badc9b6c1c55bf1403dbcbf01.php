@@ -21,8 +21,8 @@
             <?php $__currentLoopData = $brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr class="border-t">
                 <td class="px-4 py-3">
-                    <?php if($b->logo_path): ?>
-                        <img src="<?php echo e(asset('storage/'.$b->logo_path)); ?>" class="w-12 h-12 object-contain rounded">
+                    <?php if($b->hasLogo()): ?>
+                        <img src="<?php echo e($b->logoUrl()); ?>" class="w-12 h-12 object-contain rounded">
                     <?php else: ?> <span class="text-slate-400">—</span> <?php endif; ?>
                 </td>
                 <td class="px-4 py-3 font-medium"><?php echo e($b->name); ?></td>
