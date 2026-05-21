@@ -18,13 +18,7 @@
                 url('{{ asset('images/hero-bg.jpg') }}') center/cover no-repeat,
                 linear-gradient(180deg, #0b1426 0%, #0f1c33 100%);
         }
-        .hero-bg::after {
-            content: ""; position: absolute; inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-            background-size: 60px 60px; pointer-events: none;
-        }
+        /* Cuadrícula del hero deshabilitada (a petición del usuario) */
         .hero-curves {
             position: absolute; bottom: -10%; left: -5%; right: -5%; height: 60%;
             background: radial-gradient(ellipse at center, rgba(255,255,255,.06) 0%, transparent 60%);
